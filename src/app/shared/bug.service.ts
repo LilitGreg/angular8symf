@@ -12,7 +12,7 @@ import { retry, catchError } from 'rxjs/operators';
 export class BugService {
 
   // Base url
-  baseurl = 'http://symfexper.test';
+  baseurl = 'https://jsonplaceholder.typicode.com';
   basic = '';
 
   constructor(private http: HttpClient) { }
@@ -56,7 +56,7 @@ export class BugService {
 
   // GET Single Blog
   GetIssue(id): Observable<Bug> {
-    return this.http.get<Bug>(this.baseurl + '/blogstest/' + id)
+    return this.http.get<Bug>(this.baseurl + '/todos/' + id)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -64,8 +64,9 @@ export class BugService {
   }
 
   // GET
-  GetIssues(): Observable<Bug> {
-    return this.http.get<Bug>(this.baseurl + '/blogstest')
+  GetIssues(): Observable<Bug[]> {
+    //return this.http.get<Bug>(this.baseurl + '/blogstest')
+    return this.http.get<Bug[]>(this.baseurl + '/todos')
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -74,7 +75,7 @@ export class BugService {
 
   // PUT
   UpdateBug(id, data): Observable<Bug> {
-    return this.http.put<Bug>(this.baseurl + '/blogstest/edit/' + id, JSON.stringify(data), this.httpOptions)
+    return this.http.put<Bug>(this.baseurl + '/todos/edit/' + id, JSON.stringify(data), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -83,7 +84,7 @@ export class BugService {
 
   // DELETE
   DeleteBug(id){
-    return this.http.delete<Bug>(this.baseurl + '/blogstest/delete/' + id, this.httpOptions)
+    return this.http.delete<Bug>(this.baseurl + '/todos/delete/' + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)

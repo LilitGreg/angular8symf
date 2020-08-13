@@ -28,7 +28,7 @@ export class EditIssueComponent implements OnInit {
     this.bugService.GetIssue(id).subscribe((data) => {
       this.updateIssueForm = this.fb.group({
         title: [data.title],
-        body: [data.body]
+        //body: [data.body]
       })
     })
   }
@@ -36,7 +36,7 @@ export class EditIssueComponent implements OnInit {
   updateForm(){
     this.updateIssueForm = this.fb.group({
       title: [''],
-      body: ['']
+    //  body: ['']
     })    
   }
 

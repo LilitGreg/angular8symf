@@ -18,7 +18,7 @@
                         <tr *ngFor="let issues of IssuesList">
                             <th scope="row">{{issues.id}}</th>
                             <td>{{issues.title}}</td>
-                            <td>{{issues.body}}</td>
+                            <!-- <td>{{issues.body}}</td> -->
                             <td>
                                 <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/issue/', issues.id]">Show</button>
                                 <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/edit-issue/', issues.id]">Edit</button>

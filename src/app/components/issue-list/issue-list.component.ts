@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BugService } from '../../shared/bug.service';
 
+import { Bug } from '../../shared/bug';
 @Component({
   selector: 'app-issue-list',
   templateUrl: './issue-list.component.html',
@@ -21,9 +22,11 @@ export class IssueListComponent implements OnInit {
 
    // Issues list
    loadEmployees() {
-    return this.bugService.GetIssues().subscribe((data: {}) => {
-      this.IssuesList = data;
-    })
+    return this.bugService.GetIssues().subscribe(
+       (data: Bug[]) => { this.IssuesList = data; },
+       (err:any) => console.log(err),
+       () => console.log('All done getting bugs.')
+    )
   }
 
     // Delete issue
